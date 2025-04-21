@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Affiliate Link Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; max-width: 600px; margin: auto; }
+    label, select, input, button { display: block; margin-bottom: 15px; width: 100%; }
+    input, select { padding: 8px; font-size: 16px; }
+    button { padding: 10px; background-color: #007bff; color: white; border: none; cursor: pointer; font-size: 16px; }
+    button:hover { background-color: #0056b3; }
+    #result { margin-top: 20px; word-wrap: break-word; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Affiliate Link Generator</h2>
+
+  <label for="url">Enter the base URL:</label>
+  <input type="text" id="url" placeholder="https://jobtestprep.com/example">
+
+  <label for="agent">Select your name:</label>
+  <select id="agent">
+    <option value="">-- Select Agent --</option>
+    <option value="/#csac&chan=sl">Sharon</option>
+    <option value="/#csac&chan=cs">Cristina</option>
+    <option value="/#csac&chan=aw">Ann</option>
+    <option value="/#csac&chan=kt">Kathleen</option>
+  </select>
+
+  <button onclick="generateLink()">Generate Link</button>
+
+  <div id="result"></div>
+
+  <script>
+    function generateLink() {
+      const baseUrl = document.getElementById('url').value.trim();
+      const agentSuffix = document.getElementById('agent').value;
+
+      if (!baseUrl || !agentSuffix) {
+        document.getElementById('result').textContent = "Please enter a URL and select an agent.";
+        return;
+      }
+
+      const slashTrimmed = baseUrl.replace(/\/+$/, '');
+      const fullUrl = slashTrimmed + agentSuffix;
+
+      document.getElementById('result').innerHTML = `Generated link: <br><a href="${fullUrl}" target="_blank">${fullUrl}</a>`;
+    }
+  </script>
+</body>
+</html>
